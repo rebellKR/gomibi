@@ -1,0 +1,55 @@
+[
+  {
+    "id": "13112-example-1",
+    "prefecture": "東京都",
+    "city": "世田谷区",
+    "cityKana": "せたがやく",
+    "area": "三軒茶屋1丁目",
+    "rules": [
+      {
+        "id": "00000000-0000-0000-0000-000000000001",
+        "type": "burnable",
+        "weekdays": [2, 5],
+        "weeks": null,
+        "biweeklyStartDate": null
+      },
+      {
+        "id": "00000000-0000-0000-0000-000000000002",
+        "type": "nonBurnable",
+        "weekdays": [4],
+        "weeks": [1, 3],
+        "biweeklyStartDate": null
+      },
+      {
+        "id": "00000000-0000-0000-0000-000000000003",
+        "type": "resource",
+        "weekdays": [4],
+        "weeks": [2, 4],
+        "biweeklyStartDate": null
+      },
+      {
+        "id": "00000000-0000-0000-0000-000000000004",
+        "type": "plastic",
+        "weekdays": [3],
+        "weeks": null,
+        "biweeklyStartDate": null
+      }
+    ],
+    "exceptions": [
+      {
+        "id": "00000000-0000-0000-0000-000000000101",
+        "originalDate": "2026-12-31T00:00:00Z",
+        "action": "none",
+        "newDate": null
+      },
+      {
+        "id": "00000000-0000-0000-0000-000000000102",
+        "originalDate": "2027-01-01T00:00:00Z",
+        "action": "none",
+        "newDate": null
+      }
+    ],
+    "source": "https://www.city.setagaya.lg.jp/mokuji/sumai/011/001/index.html",
+    "updated": "2026-11-22"
+  }
+]

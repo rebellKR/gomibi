@@ -1,0 +1,184 @@
+[
+  {
+    "id": "01100",
+    "prefecture": "北海道",
+    "prefectureKana": "ほっかいどう",
+    "city": "札幌市",
+    "cityKana": "さっぽろし"
+  },
+  {
+    "id": "13101",
+    "prefecture": "東京都",
+    "prefectureKana": "とうきょうと",
+    "city": "千代田区",
+    "cityKana": "ちよだく"
+  },
+  {
+    "id": "13102",
+    "prefecture": "東京都",
+    "prefectureKana": "とうきょうと",
+    "city": "中央区",
+    "cityKana": "ちゅうおうく"
+  },
+  {
+    "id": "13103",
+    "prefecture": "東京都",
+    "prefectureKana": "とうきょうと",
+    "city": "港区",
+    "cityKana": "みなとく"
+  },
+  {
+    "id": "13104",
+    "prefecture": "東京都",
+    "prefectureKana": "とうきょうと",
+    "city": "新宿区",
+    "cityKana": "しんじゅくく"
+  },
+  {
+    "id": "13105",
+    "prefecture": "東京都",
+    "prefectureKana": "とうきょうと",
+    "city": "文京区",
+    "cityKana": "ぶんきょうく"
+  },
+  {
+    "id": "13106",
+    "prefecture": "東京都",
+    "prefectureKana": "とうきょうと",
+    "city": "台東区",
+    "cityKana": "たいとうく"
+  },
+  {
+    "id": "13107",
+    "prefecture": "東京都",
+    "prefectureKana": "とうきょうと",
+    "city": "墨田区",
+    "cityKana": "すみだく"
+  },
+  {
+    "id": "13108",
+    "prefecture": "東京都",
+    "prefectureKana": "とうきょうと",
+    "city": "江東区",
+    "cityKana": "こうとうく"
+  },
+  {
+    "id": "13109",
+    "prefecture": "東京都",
+    "prefectureKana": "とうきょうと",
+    "city": "品川区",
+    "cityKana": "しながわく"
+  },
+  {
+    "id": "13110",
+    "prefecture": "東京都",
+    "prefectureKana": "とうきょうと",
+    "city": "目黒区",
+    "cityKana": "めぐろく"
+  },
+  {
+    "id": "13111",
+    "prefecture": "東京都",
+    "prefectureKana": "とうきょうと",
+    "city": "大田区",
+    "cityKana": "おおたく"
+  },
+  {
+    "id": "13112",
+    "prefecture": "東京都",
+    "prefectureKana": "とうきょうと",
+    "city": "世田谷区",
+    "cityKana": "せたがやく"
+  },
+  {
+    "id": "13113",
+    "prefecture": "東京都",
+    "prefectureKana": "とうきょうと",
+    "city": "渋谷区",
+    "cityKana": "しぶやく"
+  },
+  {
+    "id": "13114",
+    "prefecture": "東京都",
+    "prefectureKana": "とうきょうと",
+    "city": "中野区",
+    "cityKana": "なかのく"
+  },
+  {
+    "id": "13115",
+    "prefecture": "東京都",
+    "prefectureKana": "とうきょうと",
+    "city": "杉並区",
+    "cityKana": "すぎなみく"
+  },
+  {
+    "id": "13116",
+    "prefecture": "東京都",
+    "prefectureKana": "とうきょうと",
+    "city": "豊島区",
+    "cityKana": "としまく"
+  },
+  {
+    "id": "13117",
+    "prefecture": "東京都",
+    "prefectureKana": "とうきょうと",
+    "city": "北区",
+    "cityKana": "きたく"
+  },
+  {
+    "id": "13118",
+    "prefecture": "東京都",
+    "prefectureKana": "とうきょうと",
+    "city": "荒川区",
+    "cityKana": "あらかわく"
+  },
+  {
+    "id": "13119",
+    "prefecture": "東京都",
+    "prefectureKana": "とうきょうと",
+    "city": "板橋区",
+    "cityKana": "いたばしく"
+  },
+  {
+    "id": "13120",
+    "prefecture": "東京都",
+    "prefectureKana": "とうきょうと",
+    "city": "練馬区",
+    "cityKana": "ねりまく"
+  },
+  {
+    "id": "13121",
+    "prefecture": "東京都",
+    "prefectureKana": "とうきょうと",
+    "city": "足立区",
+    "cityKana": "あだちく"
+  },
+  {
+    "id": "13122",
+    "prefecture": "東京都",
+    "prefectureKana": "とうきょうと",
+    "city": "葛飾区",
+    "cityKana": "かつしかく"
+  },
+  {
+    "id": "13123",
+    "prefecture": "東京都",
+    "prefectureKana": "とうきょうと",
+    "city": "江戸川区",
+    "cityKana": "えどがわく"
+  },
+  {
+    "id": "27100",
+    "prefecture": "大阪府",
+    "prefectureKana": "おおさかふ",
+    "city": "大阪市",
+    "cityKana": "おおさかし"
+  },
+  {
+    "id": "40130",
+    "prefecture": "福岡県",
+    "prefectureKana": "ふくおかけん",
+    "city": "福岡市",
+    "cityKana": "ふくおかし"
+  }
+]
