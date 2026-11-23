@@ -2,373 +2,227 @@
 //  SettingsView.swift
 //  GomiDay
 //
-//  Created by hyun_kim on 2026/11/22.
-//
 
 import SwiftUI
-import WidgetKit
 
-/// 설정 화면
 struct SettingsView: View {
     
     @Binding var settings: UserSettings
+    @State private var showingSearch = false
     @State private var showingResetAlert = false
-    @StateObject private var notificationManager = NotificationManager.shared
-    @State private var pendingNotificationCount = 0
+    @State private var showingWidgetGuide = false
+    @State private var notificationDenied = false
+    @State private var pendingCount = 0
     
     var body: some View {
         NavigationStack {
-            ZStack {
-                Color.appBackground.ignoresSafeArea()
+            Form {
+                areaSection
+                timeSection
+                notificationSection
+                widgetSection
+                appearanceSection
+                aboutSection
                 
-                List {
-                    // 등록 지역 섹션
-                    registeredAreaSection
-                    
-                    // 수거 시각 설정
-                    collectionTimeSection
-                    
-                    // 알림 설정
-                    notificationSection
-                    
-                    // 외관 설정
-                    appearanceSection
-                    
-                    // 앱 정보
-                    appInfoSection
-                    
-                    // 데이터 초기화
-                    resetSection
+                Section {
+                    Button("すべてのデータを初期化", role: .destructive) { showingResetAlert = true }
                 }
-                .listStyle(.insetGrouped)
             }
             .navigationTitle("設定")
-            .navigationBarTitleDisplayMode(.large)
+            .sheet(isPresented: $showingSearch) {
+                AreaSearchView(currentArea: settings.selectedArea) { settings.selectedArea = $0 }
+            }
+            .sheet(isPresented: $showingWidgetGuide) { WidgetGuideView() }
             .alert("データを初期化", isPresented: $showingResetAlert) {
                 Button("キャンセル", role: .cancel) {}
                 Button("初期化", role: .destructive) {
-                    resetData()
+                    AppGroupStorage.clearAllData()
+                    settings = UserSettings()
                 }
             } message: {
-                Text("すべてのデータを削除しますか？")
+                Text("登録地域と設定がすべて削除されます。")
             }
+            .task(id: settings) { pendingCount = await NotificationManager.pendingCount() }
         }
     }
     
-    // MARK: - 등록 지역 섹션
+    // MARK: - 지역
     
-    private var registeredAreaSection: some View {
-        Section {
+    private var areaSection: some View {
+        Section("登録地域") {
             if let area = settings.selectedArea {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text(area.displayName)
-                        .font(.headline)
-                    
-                    Text("\(area.rules.count)種類のゴミ")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                    
-                    // 쓰레기 종류 표시
-                    FlowLayout(spacing: 8) {
-                        ForEach(area.rules, id: \.id) { rule in
-                            HStack(spacing: 4) {
-                                Image(systemName: rule.type.icon)
-                                    .font(.caption2)
-                                Text(rule.type.shortName)
-                                    .font(.caption)
-                            }
-                            .padding(.horizontal, 8)
-                            .padding(.vertical, 4)
-                            .background(rule.type.color.opacity(0.2))
-                            .cornerRadius(6, antialiased: true)
+                NavigationLink {
+                    AreaDetailView(area: area, isCurrent: true)
+                } label: {
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text(area.displayName).font(.headline)
+                        FlowLayout(spacing: 6) {
+                            ForEach(area.rules) { GarbageChip(type: $0.type, label: area.shortName(for: $0.type)) }
                         }
                     }
-                    .padding(.top, 4)
+                    .padding(.vertical, 4)
                 }
-                .padding(.vertical, 4)
                 
-                Button {
-                    clearArea()
-                } label: {
-                    Text("地域を変更")
-                        .foregroundColor(.red)
+                if area.isCustom {
+                    NavigationLink("収集日を編集") {
+                        CustomAreaEditorView(prefecture: area.prefecture, city: area.city,
+                                             cityKana: area.cityKana, existing: area) { updated in
+                            settings.selectedArea = updated
+                        }
+                    }
                 }
+                Button("地域を変更") { showingSearch = true }
             } else {
-                Text("地域が登録されていません")
-                    .foregroundStyle(.secondary)
+                Button("地域を登録") { showingSearch = true }
             }
-        } header: {
-            Text("登録地域")
         }
     }
     
-    // MARK: - 수거 시각 설정
+    // MARK: - 마감 시각
     
-    private var collectionTimeSection: some View {
+    private var timeSection: some View {
         Section {
-            HStack {
-                Text("収集締切時刻")
-                Spacer()
-                Text(settings.collectionDeadline.displayString)
-                    .foregroundStyle(.secondary)
-            }
-            
-            // 시간 선택 (임시로 고정 옵션)
-            Picker("時", selection: Binding(
-                get: { settings.collectionDeadline.hour },
-                set: { newHour in
-                    settings.collectionDeadline = TimeOfDay(
-                        hour: newHour,
-                        minute: settings.collectionDeadline.minute
-                    )
-                    saveSettings()
-                }
-            )) {
-                ForEach(6..<12) { hour in
-                    Text("\(hour)時").tag(hour)
-                }
-            }
-            .pickerStyle(.menu)
-            
-            Picker("分", selection: Binding(
-                get: { settings.collectionDeadline.minute },
-                set: { newMinute in
-                    settings.collectionDeadline = TimeOfDay(
-                        hour: settings.collectionDeadline.hour,
-                        minute: newMinute
-                    )
-                    saveSettings()
-                }
-            )) {
-                Text("00分").tag(0)
-                Text("30分").tag(30)
-            }
-            .pickerStyle(.menu)
-        } header: {
-            Text("収集時刻")
+            DatePicker("ゴミ出しの締切",
+                       selection: Binding(
+                        get: { settings.collectionDeadline.asDate },
+                        set: { settings.collectionDeadline = TimeOfDay(date: $0) }),
+                       displayedComponents: .hourAndMinute)
         } footer: {
-            Text("この時刻以降は、当日の収集予定が表示されなくなります")
+            Text("この時刻を過ぎると、今日の予定は「次の収集日」に切り替わります。")
         }
     }
     
-    // MARK: - 외관 설정
+    // MARK: - 알림
     
     private var notificationSection: some View {
         Section {
-            // 알림 활성화
-            Toggle("前日夜に通知", isOn: Binding(
+            Toggle("前日の夜に通知", isOn: Binding(
                 get: { settings.notificationEnabled },
                 set: { newValue in
-                    settings.notificationEnabled = newValue
                     if newValue {
                         Task {
-                            // 권한 요청
-                            let granted = await notificationManager.requestAuthorization()
-                            if granted {
-                                await notificationManager.scheduleDailyNotifications(settings: settings)
-                                await updateNotificationCount()
-                            }
+                            let granted = await NotificationManager.requestAuthorization()
+                            settings.notificationEnabled = granted
+                            notificationDenied = !granted
                         }
                     } else {
-                        notificationManager.cancelAllNotifications()
+                        settings.notificationEnabled = false
                     }
-                    saveSettings()
-                }
-            ))
+                }))
             
             if settings.notificationEnabled {
-                // 알림 시각
-                Picker("通知時刻", selection: Binding(
-                    get: { settings.notificationTime.hour },
-                    set: { newHour in
-                        settings.notificationTime = TimeOfDay(
-                            hour: newHour,
-                            minute: settings.notificationTime.minute
-                        )
-                        Task {
-                            await notificationManager.scheduleDailyNotifications(settings: settings)
-                            await updateNotificationCount()
-                        }
-                        saveSettings()
-                    }
-                )) {
-                    ForEach(18..<23) { hour in
-                        Text("\(hour)時").tag(hour)
+                DatePicker("通知時刻",
+                           selection: Binding(
+                            get: { settings.notificationTime.asDate },
+                            set: { settings.notificationTime = TimeOfDay(date: $0) }),
+                           displayedComponents: .hourAndMinute)
+                LabeledContent("予約中の通知", value: "\(pendingCount)件")
+            }
+            
+            if notificationDenied {
+                Button("通知が許可されていません（設定を開く）") {
+                    if let url = URL(string: UIApplication.openSettingsURLString) {
+                        UIApplication.shared.open(url)
                     }
                 }
-                .pickerStyle(.menu)
-                
-                // 예정된 알림 개수
-                if pendingNotificationCount > 0 {
-                    HStack {
-                        Text("予定された通知")
-                        Spacer()
-                        Text("\(pendingNotificationCount)件")
-                            .foregroundStyle(.secondary)
-                    }
-                }
+                .font(.footnote)
             }
         } header: {
             Text("通知")
         } footer: {
-            Text("翌日がゴミ収集日の場合、前日夜に通知します")
-        }
-        .onAppear {
-            Task {
-                await updateNotificationCount()
-            }
+            Text("翌日が収集日のとき、前日の指定時刻にお知らせします。")
         }
     }
     
-    // MARK: - 외관 설정
+    // MARK: - 위젯
     
-    private var appearanceSection: some View {
+    private var widgetSection: some View {
         Section {
-            Picker("外観モード", selection: $settings.colorScheme) {
-                ForEach(AppColorScheme.allCases, id: \.self) { scheme in
-                    Text(scheme.rawValue).tag(scheme)
-                }
+            Button {
+                showingWidgetGuide = true
+            } label: {
+                Label("ウィジェットの追加方法", systemImage: "rectangle.on.rectangle")
             }
-            .onChange(of: settings.colorScheme) { _, _ in
-                saveSettings()
+            if !AppGroupStorage.isAppGroupAvailable {
+                Label("App Groupが無効のため、ウィジェットに地域が反映されません", systemImage: "exclamationmark.triangle.fill")
+                    .font(.footnote)
+                    .foregroundStyle(.orange)
             }
         } header: {
-            Text("外観")
+            Text("ウィジェット")
+        }
+    }
+    
+    // MARK: - 외관
+    
+    private var appearanceSection: some View {
+        Section("外観") {
+            Picker("外観モード", selection: $settings.colorScheme) {
+                ForEach(AppColorScheme.allCases, id: \.self) { Text($0.rawValue).tag($0) }
+            }
+            .pickerStyle(.segmented)
         }
     }
     
     // MARK: - 앱 정보
     
-    private var appInfoSection: some View {
+    private var aboutSection: some View {
         Section {
-            HStack {
-                Text("バージョン")
-                Spacer()
-                Text("1.0.0")
-                    .foregroundStyle(.secondary)
-            }
-            
-            Link(destination: URL(string: "https://github.com")!) {
-                HStack {
-                    Text("GitHub")
-                    Spacer()
-                    Image(systemName: "arrow.up.forward")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
-            }
+            LabeledContent("バージョン", value: appVersion)
         } header: {
             Text("アプリ情報")
+        } footer: {
+            Text("収集日のデータは各自治体の公開情報をもとにしています。祝日・年末年始は自治体の案内をご確認ください。")
         }
     }
     
-    // MARK: - 데이터 초기화
-    
-    private var resetSection: some View {
-        Section {
-            Button(role: .destructive) {
-                showingResetAlert = true
-            } label: {
-                Text("すべてのデータを初期化")
-            }
-        }
-    }
-    
-    // MARK: - Actions
-    
-    private func saveSettings() {
-        AppGroupStorage.saveSettings(settings)
-        WidgetCenter.shared.reloadAllTimelines()
-    }
-    
-    private func clearArea() {
-        settings.selectedArea = nil
-        saveSettings()
-    }
-    
-    private func resetData() {
-        AppGroupStorage.clearAllData()
-        settings = UserSettings()
-        notificationManager.cancelAllNotifications()
-        WidgetCenter.shared.reloadAllTimelines()
-    }
-    
-    private func updateNotificationCount() async {
-        pendingNotificationCount = await notificationManager.getPendingNotificationCount()
+    private var appVersion: String {
+        let v = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "-"
+        let b = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "-"
+        return "\(v) (\(b))"
     }
 }
 
-// MARK: - FlowLayout (가로로 흐르는 레이아웃)
+// MARK: - 위젯 추가 방법 안내
 
-struct FlowLayout: Layout {
-    var spacing: CGFloat = 8
+struct WidgetGuideView: View {
+    @Environment(\.dismiss) private var dismiss
     
-    func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
-        let result = FlowResult(
-            in: proposal.replacingUnspecifiedDimensions().width,
-            subviews: subviews,
-            spacing: spacing
-        )
-        return result.size
-    }
-    
-    func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
-        let result = FlowResult(
-            in: bounds.width,
-            subviews: subviews,
-            spacing: spacing
-        )
-        for (index, subview) in subviews.enumerated() {
-            subview.place(at: CGPoint(x: bounds.minX + result.positions[index].x,
-                                     y: bounds.minY + result.positions[index].y),
-                         proposal: .unspecified)
-        }
-    }
-    
-    struct FlowResult {
-        var size: CGSize = .zero
-        var positions: [CGPoint] = []
-        
-        init(in maxWidth: CGFloat, subviews: Subviews, spacing: CGFloat) {
-            var currentX: CGFloat = 0
-            var currentY: CGFloat = 0
-            var lineHeight: CGFloat = 0
-            
-            for subview in subviews {
-                let size = subview.sizeThatFits(.unspecified)
-                
-                if currentX + size.width > maxWidth && currentX > 0 {
-                    currentX = 0
-                    currentY += lineHeight + spacing
-                    lineHeight = 0
+    var body: some View {
+        NavigationStack {
+            List {
+                Section("ロック画面") {
+                    step(1, "ロック画面を長押し")
+                    step(2, "「カスタマイズ」→「ロック画面」をタップ")
+                    step(3, "時計の下の枠をタップ")
+                    step(4, "「GomiDay」を選んで、好きな形を追加")
                 }
-                
-                positions.append(CGPoint(x: currentX, y: currentY))
-                currentX += size.width + spacing
-                lineHeight = max(lineHeight, size.height)
+                Section("ホーム画面") {
+                    step(1, "ホーム画面の空いている所を長押し")
+                    step(2, "左上の「編集」→「ウィジェットを追加」")
+                    step(3, "「GomiDay」を検索して追加")
+                }
+                Section {
+                    Text("ウィジェットが一覧に出ないときは、アプリを一度開いてから、iPhoneを再起動してみてください。")
+                        .font(.footnote).foregroundStyle(.secondary)
+                }
             }
-            
-            self.size = CGSize(width: maxWidth, height: currentY + lineHeight)
+            .navigationTitle("ウィジェットの追加")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) { Button("閉じる") { dismiss() } }
+            }
         }
     }
-}
-
-#Preview {
-    SettingsView(settings: .constant(UserSettings(
-        selectedArea: Area(
-            id: "test",
-            prefecture: "東京都",
-            city: "世田谷区",
-            cityKana: "せたがやく",
-            area: "三軒茶屋",
-            rules: [
-                GarbageScheduleRule(type: .burnable, weekdays: [2, 5]),
-                GarbageScheduleRule(type: .plastic, weekdays: [3]),
-                GarbageScheduleRule(type: .resource, weekdays: [4], weeks: [2, 4])
-            ],
-            exceptions: [],
-            source: nil,
-            updated: nil
-        )
-    )))
+    
+    private func step(_ n: Int, _ text: String) -> some View {
+        HStack(alignment: .top, spacing: 12) {
+            Text("\(n)")
+                .font(.caption.bold())
+                .foregroundStyle(.white)
+                .frame(width: 22, height: 22)
+                .background(Color.accentColor, in: Circle())
+            Text(text)
+        }
+    }
 }

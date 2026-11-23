@@ -48,19 +48,34 @@ extension Date {
     
     /// 요일 이름 (일본어, 짧게: 月, 火, 水...)
     var weekdayShortName: String {
-        let formatter = DateFormatter()
-        formatter.calendar = Calendar.tokyo
-        formatter.locale = Locale(identifier: "ja_JP")
-        formatter.dateFormat = "E"  // 짧은 요일명
-        return formatter.string(from: self)
+        Weekday.shortName(weekday)
     }
     
     /// 월/일 표시 (예: "11/22")
     var monthDayString: String {
-        let formatter = DateFormatter()
-        formatter.calendar = Calendar.tokyo
-        formatter.dateFormat = "M/d"
-        return formatter.string(from: self)
+        let c = Calendar.tokyo.dateComponents([.month, .day], from: self)
+        return "\(c.month ?? 0)/\(c.day ?? 0)"
+    }
+    
+    /// "今日" / "明日" / "11/24(月)"
+    func relativeDisplay(from reference: Date = Date()) -> String {
+        let cal = Calendar.tokyo
+        if cal.isDate(self, inSameDayAs: reference) { return "今日" }
+        if let tomorrow = cal.date(byAdding: .day, value: 1, to: reference),
+           cal.isDate(self, inSameDayAs: tomorrow) { return "明日" }
+        return "\(monthDayString)(\(weekdayShortName))"
+    }
+    
+    /// 오늘부터 며칠 뒤인지 (오늘=0)
+    func daysFromToday(_ reference: Date = Date()) -> Int {
+        let cal = Calendar.tokyo
+        return cal.dateComponents([.day], from: cal.startOfDay(for: reference), to: cal.startOfDay(for: self)).day ?? 0
+    }
+    
+    /// 그 달의 1일
+    var startOfMonth: Date {
+        let cal = Calendar.tokyo
+        return cal.date(from: cal.dateComponents([.year, .month], from: self)) ?? self
     }
     
     /// 특정 시각으로 Date 생성 (오늘 날짜 기준)

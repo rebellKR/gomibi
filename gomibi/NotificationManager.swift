@@ -2,162 +2,71 @@
 //  NotificationManager.swift
 //  GomiDay
 //
-//  Created by hyun_kim on 2026/11/23.
+//  수거일 전날 밤 알림. 앱을 열 때마다 앞으로 30일치를 다시 예약합니다.
 //
 
 import Foundation
 import UserNotifications
-import Combine
 
-/// 알림 관리자
-class NotificationManager: ObservableObject {
+enum NotificationManager {
     
-    static let shared = NotificationManager()
+    private static var center: UNUserNotificationCenter { .current() }
     
-    @Published var isAuthorized = false
-    
-    private init() {
-        checkAuthorization()
+    /// 권한 요청 (처음 한 번 팝업)
+    static func requestAuthorization() async -> Bool {
+        (try? await center.requestAuthorization(options: [.alert, .sound])) ?? false
     }
     
-    // MARK: - 권한 요청
-    
-    /// 알림 권한 요청
-    func requestAuthorization() async -> Bool {
-        do {
-            let granted = try await UNUserNotificationCenter.current()
-                .requestAuthorization(options: [.alert, .sound, .badge])
-            
-            await MainActor.run {
-                self.isAuthorized = granted
-            }
-            
-            if granted {
-                print("✅ 알림 권한 허용됨")
-            } else {
-                print("❌ 알림 권한 거부됨")
-            }
-            
-            return granted
-        } catch {
-            print("❌ 알림 권한 요청 실패: \(error)")
-            return false
-        }
+    /// 현재 권한이 있는지
+    static func isAuthorized() async -> Bool {
+        let status = await center.notificationSettings().authorizationStatus
+        return status == .authorized || status == .provisional
     }
     
-    /// 현재 권한 상태 확인
-    func checkAuthorization() {
-        UNUserNotificationCenter.current().getNotificationSettings { settings in
-            DispatchQueue.main.async {
-                self.isAuthorized = settings.authorizationStatus == .authorized
-            }
-        }
-    }
-    
-    // MARK: - 알림 스케줄링
-    
-    /// 전날 밤 알림 설정
-    func scheduleDailyNotifications(settings: UserSettings) async {
-        // 기존 알림 모두 삭제
-        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+    /// 설정에 맞춰 알림 다시 예약 (기존 예약은 모두 지움)
+    static func reschedule(settings: UserSettings) async {
+        center.removeAllPendingNotificationRequests()
         
         guard settings.notificationEnabled,
-              let area = settings.selectedArea else {
-            print("ℹ️ 알림 비활성화 또는 지역 미등록")
-            return
-        }
+              let area = settings.selectedArea,
+              await isAuthorized() else { return }
         
-        // 권한 확인
-        guard isAuthorized else {
-            print("❌ 알림 권한 없음")
-            return
-        }
-        
-        // 엔진 생성
         let engine = ScheduleEngine(area: area, collectionDeadline: settings.collectionDeadline)
+        let cal = Calendar.tokyo
+        let now = Date()
         
-        // 앞으로 7일간의 일정 확인
-        let today = Date()
-        for dayOffset in 1...7 {
-            guard let date = Calendar.tokyo.date(byAdding: .day, value: dayOffset, to: today) else {
-                continue
-            }
+        // iOS는 예약 알림 최대 64개 → 30일이면 충분
+        for offset in 1...30 {
+            guard let date = cal.date(byAdding: .day, value: offset, to: now) else { continue }
+            let day = engine.daySchedule(for: date)
+            guard day.hasCollection, let dayBefore = cal.date(byAdding: .day, value: -1, to: day.date) else { continue }
             
-            let schedules = engine.getSchedules(for: date)
+            // 전날 밤 알림 시각
+            var c = cal.dateComponents([.year, .month, .day], from: dayBefore)
+            c.hour = settings.notificationTime.hour
+            c.minute = settings.notificationTime.minute
+            c.timeZone = cal.timeZone
+            guard let fireDate = cal.date(from: c), fireDate > now else { continue }
             
-            if !schedules.isEmpty {
-                // 전날 밤 알림 생성
-                scheduleNotification(
-                    for: schedules,
-                    on: date,
-                    notificationTime: settings.notificationTime
-                )
-            }
-        }
-        
-        print("✅ 알림 스케줄 완료 (최대 7일)")
-    }
-    
-    /// 특정 날짜의 알림 생성
-    private func scheduleNotification(
-        for schedules: [GarbageSchedule],
-        on date: Date,
-        notificationTime: TimeOfDay
-    ) {
-        let calendar = Calendar.tokyo
-        
-        // 전날 계산
-        guard let dayBefore = calendar.date(byAdding: .day, value: -1, to: date) else {
-            return
-        }
-        
-        // 알림 시각 설정
-        var components = calendar.dateComponents([.year, .month, .day], from: dayBefore)
-        components.hour = notificationTime.hour
-        components.minute = notificationTime.minute
-        
-        // 알림 내용
-        let types = schedules.map { $0.garbageType.rawValue }.joined(separator: "、")
-        let weekday = date.weekdayShortName
-        
-        let content = UNMutableNotificationContent()
-        content.title = "明日はゴミの日です"
-        content.body = "明日(\(weekday))は\(types)の収集日です"
-        content.sound = .default
-        content.badge = 1
-        
-        // 트리거 생성
-        let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
-        
-        // 요청 생성 (고유 ID)
-        let identifier = "gomi-\(date.timeIntervalSince1970)"
-        let request = UNNotificationRequest(
-            identifier: identifier,
-            content: content,
-            trigger: trigger
-        )
-        
-        // 알림 등록
-        UNUserNotificationCenter.current().add(request) { error in
-            if let error = error {
-                print("❌ 알림 등록 실패: \(error)")
-            } else {
-                print("✅ 알림 등록: \(weekday) \(types)")
-            }
+            let content = UNMutableNotificationContent()
+            content.title = "明日は\(day.typesLongText)の日"
+            content.body = "\(day.date.monthDayString)(\(day.date.weekdayShortName)) \(settings.collectionDeadline.displayString)までに出しましょう"
+            content.sound = .default
+            
+            let trigger = UNCalendarNotificationTrigger(dateMatching: c, repeats: false)
+            let request = UNNotificationRequest(identifier: "gomi-\(Int(day.date.timeIntervalSince1970))",
+                                                content: content, trigger: trigger)
+            try? await center.add(request)
         }
     }
     
-    // MARK: - 알림 취소
-    
-    /// 모든 알림 취소
-    func cancelAllNotifications() {
-        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-        print("✅ 모든 알림 취소됨")
+    /// 예약된 알림 개수
+    static func pendingCount() async -> Int {
+        await center.pendingNotificationRequests().count
     }
     
-    /// 예정된 알림 개수 확인
-    func getPendingNotificationCount() async -> Int {
-        let requests = await UNUserNotificationCenter.current().pendingNotificationRequests()
-        return requests.count
+    /// 모두 취소
+    static func cancelAll() {
+        center.removeAllPendingNotificationRequests()
     }
 }

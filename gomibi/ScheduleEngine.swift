@@ -2,190 +2,141 @@
 //  ScheduleEngine.swift
 //  GomiDay
 //
-//  Created by hyun_kim on 2026/11/22.
+//  지역 규칙을 보고 "어느 날 무슨 쓰레기"인지 계산하는 엔진
 //
 
 import Foundation
 
-/// 쓰레기 수거 일정을 계산하는 엔진
-class ScheduleEngine {
+struct ScheduleEngine {
     
-    // MARK: - Properties
-    
-    private let area: Area
-    private let collectionDeadline: TimeOfDay
+    let area: Area
+    let collectionDeadline: TimeOfDay
     private let calendar = Calendar.tokyo
-    
-    // MARK: - Initialization
     
     init(area: Area, collectionDeadline: TimeOfDay) {
         self.area = area
         self.collectionDeadline = collectionDeadline
     }
     
-    // MARK: - Public Methods
+    // MARK: - 하루 단위
     
-    /// 오늘 수거 일정 가져오기 (마감 시각 고려)
-    func getTodaySchedule(at currentTime: Date = Date()) -> [GarbageSchedule] {
-        let today = calendar.startOfDay(for: currentTime)
-        let deadline = createDeadlineTime(for: today)
+    /// 특정 날짜의 수거 일정 (종류 순서대로 정렬)
+    func getSchedules(for date: Date) -> [GarbageSchedule] {
+        let day = calendar.startOfDay(for: date)
+        var result: [GarbageSchedule] = []
         
-        // 마감 시각이 지났으면 빈 배열 반환
-        if currentTime >= deadline {
-            return []
+        for rule in area.rules where shouldCollect(rule: rule, on: day) {
+            // 예외 날짜(연말연시 등) 처리
+            if let exception = area.exceptions.first(where: { calendar.isDate($0.originalDate, inSameDayAs: day) }) {
+                if exception.action == .none { continue }
+            }
+            result.append(makeSchedule(day, rule.type))
         }
         
-        return getSchedules(for: today)
-    }
-    
-    /// 내일 수거 일정 가져오기
-    func getTomorrowSchedule(at currentTime: Date = Date()) -> [GarbageSchedule] {
-        let tomorrow = calendar.date(byAdding: .day, value: 1, to: currentTime)!
-        let tomorrowStart = calendar.startOfDay(for: tomorrow)
-        return getSchedules(for: tomorrowStart)
-    }
-    
-    /// 다음 수거일 가져오기 (마감 시각 고려)
-    func getNextSchedule(after currentTime: Date = Date()) -> GarbageSchedule? {
-        let today = calendar.startOfDay(for: currentTime)
-        let deadline = createDeadlineTime(for: today)
-        
-        // 마감 전이면 오늘부터, 마감 후면 내일부터 검색
-        let searchStart = currentTime < deadline ? today : today.nextDay
-        
-        // 최대 60일 검색
-        for dayOffset in 0..<60 {
-            guard let date = calendar.date(byAdding: .day, value: dayOffset, to: searchStart) else {
-                continue
-            }
-            
-            let schedules = getSchedules(for: date)
-            if let first = schedules.first {
-                return first
+        // 다른 날에서 이 날로 옮겨온 예외 수거
+        for exception in area.exceptions where exception.action == .reschedule {
+            if let newDate = exception.newDate, calendar.isDate(newDate, inSameDayAs: day) {
+                for rule in area.rules where shouldCollect(rule: rule, on: exception.originalDate) {
+                    var s = makeSchedule(day, rule.type)
+                    s.isException = true
+                    result.append(s)
+                }
             }
         }
         
+        // 같은 종류 중복 제거 + 정렬
+        var seen = Set<GarbageType>()
+        return result
+            .filter { seen.insert($0.garbageType).inserted }
+            .sorted { GarbageType.allCases.firstIndex(of: $0.garbageType)! < GarbageType.allCases.firstIndex(of: $1.garbageType)! }
+    }
+    
+    private func makeSchedule(_ day: Date, _ type: GarbageType) -> GarbageSchedule {
+        GarbageSchedule(date: day, garbageType: type,
+                        name: area.name(for: type), shortName: area.shortName(for: type))
+    }
+    
+    /// 특정 날짜를 DaySchedule로
+    func daySchedule(for date: Date) -> DaySchedule {
+        DaySchedule(date: calendar.startOfDay(for: date), schedules: getSchedules(for: date))
+    }
+    
+    // MARK: - 다음 수거일
+    
+    /// 다음 수거일 (마감 시각이 지났으면 오늘은 건너뜀). 그날의 모든 종류를 반환
+    func nextCollectionDay(after now: Date = Date()) -> DaySchedule? {
+        let today = calendar.startOfDay(for: now)
+        let start = now < deadline(on: today) ? today : today.nextDay
+        for offset in 0..<62 {
+            guard let date = calendar.date(byAdding: .day, value: offset, to: start) else { continue }
+            let day = daySchedule(for: date)
+            if day.hasCollection { return day }
+        }
         return nil
     }
     
-    /// 특정 날짜의 수거 일정 가져오기
-    func getSchedules(for date: Date) -> [GarbageSchedule] {
-        let dayStart = calendar.startOfDay(for: date)
-        var schedules: [GarbageSchedule] = []
-        
-        // 각 규칙 확인
-        for rule in area.rules {
-            if shouldCollect(rule: rule, on: dayStart) {
-                // 예외 날짜 확인
-                if let exception = findException(for: dayStart, type: rule.type) {
-                    if exception.action == .none {
-                        // 수거 없음
-                        continue
-                    } else if exception.action == .reschedule, let newDate = exception.newDate {
-                        // 다른 날로 변경됨
-                        if calendar.isDate(newDate, inSameDayAs: dayStart) {
-                            schedules.append(GarbageSchedule(
-                                date: dayStart,
-                                garbageType: rule.type,
-                                isException: true
-                            ))
-                        }
-                        continue
-                    }
-                }
-                
-                // 정상 수거
-                schedules.append(GarbageSchedule(
-                    date: dayStart,
-                    garbageType: rule.type
-                ))
-            }
+    /// 다음 수거일 이후의 수거일들 (위젯·오늘 화면의 "그 다음" 표시용)
+    func upcomingCollectionDays(after now: Date = Date(), limit: Int) -> [DaySchedule] {
+        var days: [DaySchedule] = []
+        var cursor = now
+        while days.count < limit, let next = nextCollectionDay(after: cursor) {
+            days.append(next)
+            // 다음 날 0시부터 다시 찾기
+            cursor = next.date.nextDay
         }
-        
-        return schedules
+        return days
     }
     
-    /// 특정 기간의 일정 가져오기 (주간 뷰용)
+    /// 이전 버전 호환용: 다음 수거 1건
+    func getNextSchedule(after now: Date = Date()) -> GarbageSchedule? {
+        nextCollectionDay(after: now)?.schedules.first
+    }
+    
+    // MARK: - 기간 단위
+    
+    /// 기간 내 매일의 일정
     func getSchedules(from startDate: Date, to endDate: Date) -> [DaySchedule] {
-        var daySchedules: [DaySchedule] = []
-        var currentDate = calendar.startOfDay(for: startDate)
+        var days: [DaySchedule] = []
+        var current = calendar.startOfDay(for: startDate)
         let end = calendar.startOfDay(for: endDate)
-        
-        while currentDate <= end {
-            let schedules = getSchedules(for: currentDate)
-            daySchedules.append(DaySchedule(
-                date: currentDate,
-                schedules: schedules
-            ))
-            
-            currentDate = calendar.date(byAdding: .day, value: 1, to: currentDate)!
+        while current <= end {
+            days.append(daySchedule(for: current))
+            current = current.nextDay
         }
-        
-        return daySchedules
+        return days
     }
     
-    /// 이번 주 일정 가져오기 (일요일~토요일)
-    func getThisWeekSchedules(relativeTo date: Date = Date()) -> [DaySchedule] {
-        // 이번 주 일요일 찾기
-        let weekday = calendar.component(.weekday, from: date)
-        let daysFromSunday = weekday - 1  // 일요일=1이므로
-        guard let sunday = calendar.date(byAdding: .day, value: -daysFromSunday, to: date) else {
-            return []
-        }
-        
-        // 이번 주 토요일
-        guard let saturday = calendar.date(byAdding: .day, value: 6, to: sunday) else {
-            return []
-        }
-        
-        return getSchedules(from: sunday, to: saturday)
+    /// 오늘부터 7일간
+    func nextSevenDays(from date: Date = Date()) -> [DaySchedule] {
+        getSchedules(from: date, to: calendar.date(byAdding: .day, value: 6, to: date) ?? date)
     }
     
-    // MARK: - Private Methods
+    // MARK: - 규칙 판정
     
-    /// 특정 날짜에 해당 규칙의 수거가 있는지 확인
     private func shouldCollect(rule: GarbageScheduleRule, on date: Date) -> Bool {
         let weekday = calendar.component(.weekday, from: date)
+        guard rule.weekdays.contains(weekday) else { return false }
         
-        // 요일이 맞는지 확인
-        guard rule.weekdays.contains(weekday) else {
-            return false
+        // 제n주 (예: 제2·제4 수요일) → 그 달의 n번째 해당 요일
+        if let weeks = rule.weeks, !weeks.isEmpty {
+            let ordinal = calendar.component(.weekdayOrdinal, from: date)
+            guard weeks.contains(ordinal) else { return false }
         }
         
-        // 주차 제한이 있으면 확인 (예: 제2·제4 수요일)
-        if let weeks = rule.weeks {
-            let weekOfMonth = calendar.component(.weekdayOrdinal, from: date)
-            guard weeks.contains(weekOfMonth) else {
-                return false
-            }
+        // 격주: 기준일로부터 짝수 주차만 수거 (기준일 이전 날짜도 정확히 계산)
+        if let start = rule.biweeklyStartDate {
+            let days = calendar.dateComponents([.day], from: calendar.startOfDay(for: start), to: date).day ?? 0
+            let weeks = Int((Double(days) / 7.0).rounded(.down))
+            if weeks % 2 != 0 { return false }
         }
-        
-        // 격주 확인
-        if let biweeklyStart = rule.biweeklyStartDate {
-            let daysBetween = calendar.dateComponents([.day], from: biweeklyStart, to: date).day ?? 0
-            let weeksBetween = daysBetween / 7
-            
-            // 짝수 주 또는 홀수 주인지 확인
-            if weeksBetween % 2 != 0 {
-                return false
-            }
-        }
-        
         return true
     }
     
-    /// 예외 날짜 찾기
-    private func findException(for date: Date, type: GarbageType) -> ScheduleException? {
-        return area.exceptions.first { exception in
-            calendar.isDate(exception.originalDate, inSameDayAs: date)
-        }
-    }
-    
-    /// 특정 날짜의 마감 시각 생성
-    private func createDeadlineTime(for date: Date) -> Date {
-        var components = calendar.dateComponents([.year, .month, .day], from: date)
-        components.hour = collectionDeadline.hour
-        components.minute = collectionDeadline.minute
-        return calendar.date(from: components) ?? date
+    /// 그 날의 배출 마감 시각
+    private func deadline(on day: Date) -> Date {
+        var c = calendar.dateComponents([.year, .month, .day], from: day)
+        c.hour = collectionDeadline.hour
+        c.minute = collectionDeadline.minute
+        return calendar.date(from: c) ?? day
     }
 }

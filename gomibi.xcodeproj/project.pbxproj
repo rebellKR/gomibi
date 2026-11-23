@@ -51,13 +51,6 @@
 			);
 			target = 558814AE30B3C9C80067BCAF /* gomiDayWidgetExtension */;
 		};
-		558814D430B3CBE60067BCAF /* Exceptions for "gomibi" folder in "gomibi" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				GomiDayWidgetBundle.swift,
-			);
-			target = 5588147C30B267930067BCAF /* gomibi */;
-		};
 		558814D530B3CBE60067BCAF /* Exceptions for "gomibi" folder in "gomiDayWidgetExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -68,7 +61,6 @@
 				GarbageSchedule.swift,
 				GarbageScheduleRule.swift,
 				GarbageType.swift,
-				GomiDayWidgetBundle.swift,
 				ScheduleEngine.swift,
 			);
 			target = 558814AE30B3C9C80067BCAF /* gomiDayWidgetExtension */;
@@ -79,7 +71,6 @@
 		5588147F30B267930067BCAF /* gomibi */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				558814D430B3CBE60067BCAF /* Exceptions for "gomibi" folder in "gomibi" target */,
 				558814D530B3CBE60067BCAF /* Exceptions for "gomibi" folder in "gomiDayWidgetExtension" target */,
 			);
 			path = gomibi;
@@ -397,11 +388,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = gomibi/gomibi.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7Y666ZYT7Q;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = GomiDay;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -429,11 +422,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = gomibi/gomibi.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7Y666ZYT7Q;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = GomiDay;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -461,6 +456,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = gomiDayWidget/gomiDayWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7Y666ZYT7Q;
@@ -491,6 +487,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = gomiDayWidget/gomiDayWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7Y666ZYT7Q;

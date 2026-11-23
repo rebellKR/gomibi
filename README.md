@@ -102,12 +102,12 @@ GomiDay/
 - [x] 알림 권한 요청
 - [x] 설정에서 알림 ON/OFF
 
-### ⏳ 7단계: 최적화 & 마무리 (다음)
-- [ ] 코드 주석 정리
-- [ ] 에러 처리 개선
-- [ ] 앱 아이콘 추가
-- [ ] 최종 테스트
-### 🔜 8단계: 배포
+### ✅ 7-8단계: 최종 완성 (완료)
+- [x] 코드 주석 정리
+- [x] 도쿄 + 근기 지역 데이터 (10개 도시)
+- [x] README 문서화
+- [x] 실제 iPhone 테스트
+- [x] 프로젝트 완성 🎉
 
 ## 📝 쓰레기 종류
 
@@ -152,6 +152,107 @@ GomiDay/
 # 단위 테스트 실행
 ⌘ + U (Xcode)
 ```
+
+---
+
+## 🚀 사용 방법
+
+### 1️⃣ 앱 설치 및 실행
+```
+1. Xcode에서 프로젝트 열기
+2. 본인의 iPhone 연결
+3. App Group ID 변경:
+   - AppGroupStorage.swift의 appGroupID를 본인 ID로 변경
+4. ⌘ + R로 실행
+```
+
+### 2️⃣ 지역 등록
+```
+1. 하단 탭에서 "地域" 선택
+2. 검색창에 본인 지역 입력 (예: "大阪市")
+3. 목록에서 지역 선택
+4. 자동으로 등록 완료!
+```
+
+### 3️⃣ 위젯 추가
+```
+[잠금 화면]
+1. 잠금 화면 길게 누르기
+2. [커스터마이즈] 탭
+3. 위젯 영역 탭
+4. "ゴミ収集日" 검색
+5. 원하는 위젯 추가
+
+[홈 화면]
+1. 홈 화면 빈 공간 길게 누르기
+2. 왼쪽 상단 [+] 버튼
+3. "ゴミ収集日" 검색
+4. 위젯 추가
+```
+
+### 4️⃣ 알림 설정
+```
+1. 하단 탭에서 "設定" 선택
+2. "前日夜に通知" 토글 ON
+3. 권한 요청 → 허용
+4. 통知時刻 선택 (18~22시)
+5. 완료!
+```
+
+---
+
+## 📊 프로젝트 완성도
+
+```
+✅ 100% 완성!
+
+- 핵심 기능: 100%
+- UI/UX: 100%
+- 위젯: 100%
+- 알림: 100%
+- 데이터: 10개 도시
+- 문서화: 100%
+```
+
+---
+
+## 🎓 배운 것들
+
+이 프로젝트를 통해 습득한 iOS 개발 기술:
+
+### SwiftUI
+- TabView, NavigationStack
+- List, Form, Picker
+- @State, @Binding, @StateObject
+- Task, async/await
+- .searchable 모디파이어
+
+### WidgetKit
+- TimelineProvider
+- Widget Configuration
+- App Group 데이터 공유
+- accessoryRectangular, Circular, Inline
+- containerBackground
+
+### Foundation
+- Calendar (Asia/Tokyo)
+- DateComponents
+- JSON Codable
+- FileManager
+
+### UserNotifications
+- UNUserNotificationCenter
+- 권한 요청
+- 로컬 알림 스케줄링
+- UNCalendarNotificationTrigger
+
+### 아키텍처
+- MVVM 패턴
+- Shared 코드 구조
+- App Group 데이터 공유
+- 단위 테스트 (XCTest)
+
+---
 
 ## 📄 라이선스
 

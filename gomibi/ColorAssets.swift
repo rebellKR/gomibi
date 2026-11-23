@@ -17,10 +17,10 @@ extension Color {
         dark: Color(red: 0.9, green: 0.4, blue: 0.35)     // #E56659
     )
     
-    /// 불연 쓰레기 색상 (그레이)
+    /// 불연 쓰레기 색상 (퍼플) — 회색은 "비활성"처럼 보여서 변경
     static let nonBurnableColor = Color(
-        light: Color(red: 0.6, green: 0.6, blue: 0.62),   // #999A9E
-        dark: Color(red: 0.7, green: 0.7, blue: 0.72)     // #B3B3B8
+        light: Color(red: 0.61, green: 0.35, blue: 0.85), // #9C59D9
+        dark: Color(red: 0.75, green: 0.5, blue: 0.95)    // #BF80F2
     )
     
     /// 자원 쓰레기 색상 (블루)
