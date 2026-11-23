@@ -83,13 +83,16 @@ GomiDay/
 - [x] 단위 테스트 작성
 - [x] 예외 날짜 처리
 
-### ⏳ 3단계: 잠금 화면 위젯 (다음)
-- [ ] Widget Extension 기본 구조
-- [ ] accessoryRectangular 구현
-- [ ] accessoryCircular 구현
-- [ ] accessoryInline 구현
-- [ ] TimelineProvider 구현
-### 🔜 4단계: 홈 화면 위젯
+### ✅ 3단계: 잠금 화면 위젯 (완료)
+- [x] Widget Extension 기본 구조
+- [x] accessoryRectangular 구현
+- [x] accessoryCircular 구현
+- [x] accessoryInline 구현
+- [x] TimelineProvider 구현
+
+### ⏳ 4단계: 홈 화면 위젯 (다음)
+- [ ] systemSmall 구현
+- [ ] systemMedium 구현
 ### 🔜 5단계: 앱 화면
 ### 🔜 6단계: 설정 & 알림
 ### 🔜 7단계: 최적화 & 커밋

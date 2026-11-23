@@ -6,7 +6,7 @@
 //
 //  ⚠️ 테스트는 나중에 활성화합니다!
 //  테스트 타깃이 제대로 설정되면 아래 주석을 해제하세요.
-w
+
 /*
 import XCTest
 import Foundation
