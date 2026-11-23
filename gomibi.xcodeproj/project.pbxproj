@@ -6,14 +6,91 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		558814B230B3C9C80067BCAF /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 558814B130B3C9C80067BCAF /* WidgetKit.framework */; };
+		558814B430B3C9C80067BCAF /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 558814B330B3C9C80067BCAF /* SwiftUI.framework */; };
+		558814C530B3C9CA0067BCAF /* gomiDayWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 558814AF30B3C9C80067BCAF /* gomiDayWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		558814C330B3C9CA0067BCAF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5588147530B267930067BCAF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 558814AE30B3C9C80067BCAF;
+			remoteInfo = gomiDayWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		558814CA30B3C9CA0067BCAF /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				558814C530B3C9CA0067BCAF /* gomiDayWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		5588147D30B267930067BCAF /* gomibi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gomibi.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		558814AF30B3C9C80067BCAF /* gomiDayWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = gomiDayWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		558814B130B3C9C80067BCAF /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		558814B330B3C9C80067BCAF /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		558814C630B3C9CA0067BCAF /* Exceptions for "gomiDayWidget" folder in "gomiDayWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 558814AE30B3C9C80067BCAF /* gomiDayWidgetExtension */;
+		};
+		558814D430B3CBE60067BCAF /* Exceptions for "gomibi" folder in "gomibi" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				GomiDayWidgetBundle.swift,
+			);
+			target = 5588147C30B267930067BCAF /* gomibi */;
+		};
+		558814D530B3CBE60067BCAF /* Exceptions for "gomibi" folder in "gomiDayWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				AppGroupStorage.swift,
+				Area.swift,
+				CalendarExtension.swift,
+				ColorAssets.swift,
+				GarbageSchedule.swift,
+				GarbageScheduleRule.swift,
+				GarbageType.swift,
+				GomiDayWidgetBundle.swift,
+				ScheduleEngine.swift,
+			);
+			target = 558814AE30B3C9C80067BCAF /* gomiDayWidgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		5588147F30B267930067BCAF /* gomibi */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				558814D430B3CBE60067BCAF /* Exceptions for "gomibi" folder in "gomibi" target */,
+				558814D530B3CBE60067BCAF /* Exceptions for "gomibi" folder in "gomiDayWidgetExtension" target */,
+			);
 			path = gomibi;
+			sourceTree = "<group>";
+		};
+		558814B530B3C9C80067BCAF /* gomiDayWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				558814C630B3C9CA0067BCAF /* Exceptions for "gomiDayWidget" folder in "gomiDayWidgetExtension" target */,
+			);
+			path = gomiDayWidget;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -26,6 +103,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		558814AC30B3C9C80067BCAF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				558814B430B3C9C80067BCAF /* SwiftUI.framework in Frameworks */,
+				558814B230B3C9C80067BCAF /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -33,6 +119,8 @@
 			isa = PBXGroup;
 			children = (
 				5588147F30B267930067BCAF /* gomibi */,
+				558814B530B3C9C80067BCAF /* gomiDayWidget */,
+				558814B030B3C9C80067BCAF /* Frameworks */,
 				5588147E30B267930067BCAF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,8 +129,18 @@
 			isa = PBXGroup;
 			children = (
 				5588147D30B267930067BCAF /* gomibi.app */,
+				558814AF30B3C9C80067BCAF /* gomiDayWidgetExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		558814B030B3C9C80067BCAF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				558814B130B3C9C80067BCAF /* WidgetKit.framework */,
+				558814B330B3C9C80067BCAF /* SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -55,10 +153,12 @@
 				5588147930B267930067BCAF /* Sources */,
 				5588147A30B267930067BCAF /* Frameworks */,
 				5588147B30B267930067BCAF /* Resources */,
+				558814CA30B3C9CA0067BCAF /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				558814C430B3C9CA0067BCAF /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				5588147F30B267930067BCAF /* gomibi */,
@@ -69,6 +169,28 @@
 			productName = gomibi;
 			productReference = 5588147D30B267930067BCAF /* gomibi.app */;
 			productType = "com.apple.product-type.application";
+		};
+		558814AE30B3C9C80067BCAF /* gomiDayWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 558814C730B3C9CA0067BCAF /* Build configuration list for PBXNativeTarget "gomiDayWidgetExtension" */;
+			buildPhases = (
+				558814AB30B3C9C80067BCAF /* Sources */,
+				558814AC30B3C9C80067BCAF /* Frameworks */,
+				558814AD30B3C9C80067BCAF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				558814B530B3C9C80067BCAF /* gomiDayWidget */,
+			);
+			name = gomiDayWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = gomiDayWidgetExtension;
+			productReference = 558814AF30B3C9C80067BCAF /* gomiDayWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -81,6 +203,9 @@
 				LastUpgradeCheck = 2660;
 				TargetAttributes = {
 					5588147C30B267930067BCAF = {
+						CreatedOnToolsVersion = 26.6;
+					};
+					558814AE30B3C9C80067BCAF = {
 						CreatedOnToolsVersion = 26.6;
 					};
 				};
@@ -100,12 +225,20 @@
 			projectRoot = "";
 			targets = (
 				5588147C30B267930067BCAF /* gomibi */,
+				558814AE30B3C9C80067BCAF /* gomiDayWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		5588147B30B267930067BCAF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		558814AD30B3C9C80067BCAF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +255,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		558814AB30B3C9C80067BCAF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		558814C430B3C9CA0067BCAF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 558814AE30B3C9C80067BCAF /* gomiDayWidgetExtension */;
+			targetProxy = 558814C330B3C9CA0067BCAF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		5588148630B267940067BCAF /* Debug */ = {
@@ -308,6 +456,66 @@
 			};
 			name = Release;
 		};
+		558814C830B3C9CA0067BCAF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7Y666ZYT7Q;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = gomiDayWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = gomiDayWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codehy.gomibi.gomiDayWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		558814C930B3C9CA0067BCAF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7Y666ZYT7Q;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = gomiDayWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = gomiDayWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codehy.gomibi.gomiDayWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -325,6 +533,15 @@
 			buildConfigurations = (
 				5588148930B267940067BCAF /* Debug */,
 				5588148A30B267940067BCAF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		558814C730B3C9CA0067BCAF /* Build configuration list for PBXNativeTarget "gomiDayWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				558814C830B3C9CA0067BCAF /* Debug */,
+				558814C930B3C9CA0067BCAF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

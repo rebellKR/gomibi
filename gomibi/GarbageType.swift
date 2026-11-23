@@ -17,6 +17,27 @@ enum GarbageType: String, Codable, CaseIterable, Identifiable {
     
     var id: String { rawValue }
     
+    /// JSON 읽기: "burnable"(영문 키)와 "可燃ごみ"(일본어 값) 둘 다 허용
+    /// → 데이터 파일은 영문, 기존에 저장된 설정은 일본어여도 문제없이 읽힘
+    init(from decoder: Decoder) throws {
+        let value = try decoder.singleValueContainer().decode(String.self)
+        if let type = GarbageType(rawValue: value) {
+            self = type
+            return
+        }
+        switch value {
+        case "burnable":    self = .burnable
+        case "nonBurnable": self = .nonBurnable
+        case "resource":    self = .resource
+        case "plastic":     self = .plastic
+        case "paper":       self = .paper
+        default:
+            throw DecodingError.dataCorrupted(.init(
+                codingPath: decoder.codingPath,
+                debugDescription: "알 수 없는 쓰레기 종류: \(value)"))
+        }
+    }
+    
     /// 종류별 SF Symbol 아이콘
     var icon: String {
         switch self {

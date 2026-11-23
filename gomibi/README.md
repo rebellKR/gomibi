@@ -90,12 +90,23 @@ GomiDay/
 - [x] accessoryInline 구현
 - [x] TimelineProvider 구현
 
-### ⏳ 4단계: 홈 화면 위젯 (다음)
-- [ ] systemSmall 구현
-- [ ] systemMedium 구현
-### 🔜 5단계: 앱 화면
-### 🔜 6단계: 설정 & 알림
-### 🔜 7단계: 최적화 & 커밋
+### ✅ 5단계: 앱 화면 (완료)
+- [x] MainTabView 구현
+- [x] TodayView 구현
+- [x] AreaSearchView 구현
+- [x] SettingsView 구현
+
+### ✅ 6단계: 알림 & 개선 (완료)
+- [x] 전날 밤 알림 구현
+- [x] NotificationManager 구현
+- [x] 알림 권한 요청
+- [x] 설정에서 알림 ON/OFF
+
+### ⏳ 7단계: 최적화 & 마무리 (다음)
+- [ ] 코드 주석 정리
+- [ ] 에러 처리 개선
+- [ ] 앱 아이콘 추가
+- [ ] 최종 테스트
 ### 🔜 8단계: 배포
 
 ## 📝 쓰레기 종류
@@ -145,6 +156,62 @@ GomiDay/
 ## 📄 라이선스
 
 MIT License
+
+---
+
+## 🗾 지역 데이터 추가 방법
+
+현재 **도쿄 23구** 데이터가 포함되어 있습니다. 다른 지역을 추가하려면:
+
+### 방법 1: 직접 설정 기능 사용
+앱에서 "地域を選択" → 본인 지역 선택 → "直接設定" 버튼으로 일정 입력
+
+### 방법 2: areas.json에 데이터 추가
+GitHub에서 Pull Request를 통해 데이터 기여:
+
+```json
+{
+  "id": "지역코드-이름",
+  "prefecture": "都道府県",
+  "city": "市区町村",
+  "cityKana": "ひらがな",
+  "area": null,
+  "rules": [
+    {
+      "id": "유니크ID",
+      "type": "burnable",  // burnable, nonBurnable, resource, plastic, paper
+      "weekdays": [2, 5],  // 1=일요일, 2=월요일, ... 7=토요일
+      "weeks": null,       // null=매주, [1,3]=제1·제3주
+      "biweeklyStartDate": null
+    }
+  ],
+  "exceptions": [],
+  "source": "자치체 URL",
+  "updated": "YYYY-MM-DD"
+}
+```
+
+### 데이터 출처
+각 지역의 쓰레기 수거 일정은 해당 자치체 홈페이지에서 확인하세요:
+- 도쿄 23구: https://www.tokyo23city.or.jp/
+- 전국 자치체 검색: https://www.soumu.go.jp/
+
+---
+
+## 🌐 커뮤니티 기여
+
+다음 지역의 데이터를 추가해주세요!
+
+**우선순위:**
+1. 정령지정도시 (20개)
+   - 요코하마시, 오사카시, 나고야시, 삿포로시, 후쿠오카시 등
+2. 도도부현청 소재지 (47개)
+3. 인구 10만 이상 도시
+
+**기여 방법:**
+1. `areas.json` 파일 수정
+2. Pull Request 제출
+3. 출처 URL 반드시 포함
 
 ---
 

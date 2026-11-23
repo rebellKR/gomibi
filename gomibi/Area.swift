@@ -51,3 +51,27 @@ struct Municipality: Codable, Identifiable {
                cityKana.contains(lowercased)
     }
 }
+
+/// 통합 데이터 파일(gomi_data.json)의 전체 구조
+struct GomiData: Codable {
+    let version: String
+    let municipalities: [Municipality]  // 검색용 시구정촌 목록
+    let areas: [Area]                   // 수거 일정이 등록된 지역
+    
+    /// 앱 번들에서 gomi_data.json 읽기 (실패 시 nil)
+    static func load() -> GomiData? {
+        guard let url = Bundle.main.url(forResource: "gomi_data", withExtension: "json") else {
+            print("❌ gomi_data.json을 찾을 수 없습니다.")
+            return nil
+        }
+        do {
+            let data = try Data(contentsOf: url)
+            let decoded = try JSONDecoder().decode(GomiData.self, from: data)
+            print("✅ 시구정촌 \(decoded.municipalities.count)개 / 지역 \(decoded.areas.count)개 로드")
+            return decoded
+        } catch {
+            print("❌ gomi_data.json 로드 실패: \(error)")
+            return nil
+        }
+    }
+}

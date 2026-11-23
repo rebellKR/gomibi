@@ -4,8 +4,8 @@
 //
 //  Created by hyun_kim on 2026/11/22.
 //
-//  ⚠️ 위젯은 나중에 활성화합니다!
-//  Target Membership을 설정한 후 주석을 해제하세요.
+//  ⚠️ 이 파일은 사용하지 않습니다!
+//  gomiDayWidgetBundle.swift (소문자)를 사용합니다.
 
 /*
 import WidgetKit
@@ -20,3 +20,5 @@ struct GomiDayWidgetBundle: WidgetBundle {
     }
 }
 */
+
+

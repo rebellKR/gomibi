@@ -7,7 +7,7 @@
 //  ⚠️ 위젯은 나중에 활성화합니다!
 //  Target Membership을 설정한 후 주석을 해제하세요.
 
-/*
+
 import WidgetKit
 import SwiftUI
 
@@ -281,4 +281,4 @@ struct GomiDayWidgetEntryView: View {
         tomorrowSchedule: nil
     )
 }
-*/
+

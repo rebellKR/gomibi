@@ -1,0 +1,1488 @@
+{
+  "version": "2026-11-23",
+  "municipalities": [
+    {
+      "id": "01100",
+      "prefecture": "北海道",
+      "prefectureKana": "ほっかいどう",
+      "city": "札幌市",
+      "cityKana": "さっぽろし"
+    },
+    {
+      "id": "13101",
+      "prefecture": "東京都",
+      "prefectureKana": "とうきょうと",
+      "city": "千代田区",
+      "cityKana": "ちよだく"
+    },
+    {
+      "id": "13102",
+      "prefecture": "東京都",
+      "prefectureKana": "とうきょうと",
+      "city": "中央区",
+      "cityKana": "ちゅうおうく"
+    },
+    {
+      "id": "13103",
+      "prefecture": "東京都",
+      "prefectureKana": "とうきょうと",
+      "city": "港区",
+      "cityKana": "みなとく"
+    },
+    {
+      "id": "13104",
+      "prefecture": "東京都",
+      "prefectureKana": "とうきょうと",
+      "city": "新宿区",
+      "cityKana": "しんじゅくく"
+    },
+    {
+      "id": "13105",
+      "prefecture": "東京都",
+      "prefectureKana": "とうきょうと",
+      "city": "文京区",
+      "cityKana": "ぶんきょうく"
+    },
+    {
+      "id": "13106",
+      "prefecture": "東京都",
+      "prefectureKana": "とうきょうと",
+      "city": "台東区",
+      "cityKana": "たいとうく"
+    },
+    {
+      "id": "13107",
+      "prefecture": "東京都",
+      "prefectureKana": "とうきょうと",
+      "city": "墨田区",
+      "cityKana": "すみだく"
+    },
+    {
+      "id": "13108",
+      "prefecture": "東京都",
+      "prefectureKana": "とうきょうと",
+      "city": "江東区",
+      "cityKana": "こうとうく"
+    },
+    {
+      "id": "13109",
+      "prefecture": "東京都",
+      "prefectureKana": "とうきょうと",
+      "city": "品川区",
+      "cityKana": "しながわく"
+    },
+    {
+      "id": "13110",
+      "prefecture": "東京都",
+      "prefectureKana": "とうきょうと",
+      "city": "目黒区",
+      "cityKana": "めぐろく"
+    },
+    {
+      "id": "13111",
+      "prefecture": "東京都",
+      "prefectureKana": "とうきょうと",
+      "city": "大田区",
+      "cityKana": "おおたく"
+    },
+    {
+      "id": "13112",
+      "prefecture": "東京都",
+      "prefectureKana": "とうきょうと",
+      "city": "世田谷区",
+      "cityKana": "せたがやく"
+    },
+    {
+      "id": "13113",
+      "prefecture": "東京都",
+      "prefectureKana": "とうきょうと",
+      "city": "渋谷区",
+      "cityKana": "しぶやく"
+    },
+    {
+      "id": "13114",
+      "prefecture": "東京都",
+      "prefectureKana": "とうきょうと",
+      "city": "中野区",
+      "cityKana": "なかのく"
+    },
+    {
+      "id": "13115",
+      "prefecture": "東京都",
+      "prefectureKana": "とうきょうと",
+      "city": "杉並区",
+      "cityKana": "すぎなみく"
+    },
+    {
+      "id": "13116",
+      "prefecture": "東京都",
+      "prefectureKana": "とうきょうと",
+      "city": "豊島区",
+      "cityKana": "としまく"
+    },
+    {
+      "id": "13117",
+      "prefecture": "東京都",
+      "prefectureKana": "とうきょうと",
+      "city": "北区",
+      "cityKana": "きたく"
+    },
+    {
+      "id": "13118",
+      "prefecture": "東京都",
+      "prefectureKana": "とうきょうと",
+      "city": "荒川区",
+      "cityKana": "あらかわく"
+    },
+    {
+      "id": "13119",
+      "prefecture": "東京都",
+      "prefectureKana": "とうきょうと",
+      "city": "板橋区",
+      "cityKana": "いたばしく"
+    },
+    {
+      "id": "13120",
+      "prefecture": "東京都",
+      "prefectureKana": "とうきょうと",
+      "city": "練馬区",
+      "cityKana": "ねりまく"
+    },
+    {
+      "id": "13121",
+      "prefecture": "東京都",
+      "prefectureKana": "とうきょうと",
+      "city": "足立区",
+      "cityKana": "あだちく"
+    },
+    {
+      "id": "13122",
+      "prefecture": "東京都",
+      "prefectureKana": "とうきょうと",
+      "city": "葛飾区",
+      "cityKana": "かつしかく"
+    },
+    {
+      "id": "13123",
+      "prefecture": "東京都",
+      "prefectureKana": "とうきょうと",
+      "city": "江戸川区",
+      "cityKana": "えどがわく"
+    },
+    {
+      "id": "24201",
+      "prefecture": "三重県",
+      "prefectureKana": "みえけん",
+      "city": "津市",
+      "cityKana": "つし"
+    },
+    {
+      "id": "25201",
+      "prefecture": "滋賀県",
+      "prefectureKana": "しがけん",
+      "city": "大津市",
+      "cityKana": "おおつし"
+    },
+    {
+      "id": "26100",
+      "prefecture": "京都府",
+      "prefectureKana": "きょうとふ",
+      "city": "京都市",
+      "cityKana": "きょうとし"
+    },
+    {
+      "id": "27100",
+      "prefecture": "大阪府",
+      "prefectureKana": "おおさかふ",
+      "city": "大阪市",
+      "cityKana": "おおさかし"
+    },
+    {
+      "id": "28100",
+      "prefecture": "兵庫県",
+      "prefectureKana": "ひょうごけん",
+      "city": "神戸市",
+      "cityKana": "こうべし"
+    },
+    {
+      "id": "29201",
+      "prefecture": "奈良県",
+      "prefectureKana": "ならけん",
+      "city": "奈良市",
+      "cityKana": "ならし"
+    },
+    {
+      "id": "30201",
+      "prefecture": "和歌山県",
+      "prefectureKana": "わかやまけん",
+      "city": "和歌山市",
+      "cityKana": "わかやまし"
+    },
+    {
+      "id": "40130",
+      "prefecture": "福岡県",
+      "prefectureKana": "ふくおかけん",
+      "city": "福岡市",
+      "cityKana": "ふくおかし"
+    }
+  ],
+  "areas": [
+    {
+      "id": "13101-chiyoda",
+      "prefecture": "東京都",
+      "city": "千代田区",
+      "cityKana": "ちよだく",
+      "area": null,
+      "rules": [
+        {
+          "id": "6B301F37-BC4D-56A6-B786-A1C02D74756B",
+          "type": "burnable",
+          "weekdays": [
+            2,
+            5
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "A279C686-5527-531E-BF06-6A02DA2DFBDF",
+          "type": "nonBurnable",
+          "weekdays": [
+            4
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "DC79997B-17F6-54A8-B5CA-3886FE9DA91C",
+          "type": "resource",
+          "weekdays": [
+            3
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        }
+      ],
+      "exceptions": [],
+      "source": "https://www.city.chiyoda.lg.jp/",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "13102-chuo",
+      "prefecture": "東京都",
+      "city": "中央区",
+      "cityKana": "ちゅうおうく",
+      "area": null,
+      "rules": [
+        {
+          "id": "B073445F-78AE-5870-AA9A-72578358EAC3",
+          "type": "burnable",
+          "weekdays": [
+            2,
+            5
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "406CA08C-7C2D-5FCF-A681-915A45EE8DB5",
+          "type": "nonBurnable",
+          "weekdays": [
+            7
+          ],
+          "weeks": [
+            1,
+            3
+          ],
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "3E0787AB-AC77-5D7B-9682-6D394ADE2252",
+          "type": "resource",
+          "weekdays": [
+            4
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        }
+      ],
+      "exceptions": [],
+      "source": "https://www.city.chuo.lg.jp/",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "13103-minato",
+      "prefecture": "東京都",
+      "city": "港区",
+      "cityKana": "みなとく",
+      "area": null,
+      "rules": [
+        {
+          "id": "768D0D79-F1D3-53FB-8CEF-393C7AD75AE4",
+          "type": "burnable",
+          "weekdays": [
+            2,
+            5
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "D63BDA00-9870-544C-B20D-6CA24BC60490",
+          "type": "nonBurnable",
+          "weekdays": [
+            4
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "7651B3FE-8E43-5294-BEBE-E448E18D75BB",
+          "type": "resource",
+          "weekdays": [
+            7
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        }
+      ],
+      "exceptions": [],
+      "source": "https://www.city.minato.tokyo.jp/",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "13104-shinjuku",
+      "prefecture": "東京都",
+      "city": "新宿区",
+      "cityKana": "しんじゅくく",
+      "area": null,
+      "rules": [
+        {
+          "id": "54E869A7-2863-5C8D-A7C9-54D655DEFA35",
+          "type": "burnable",
+          "weekdays": [
+            2,
+            5
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "D4843A03-C263-54D6-B0AB-3D0B9B402AA5",
+          "type": "nonBurnable",
+          "weekdays": [
+            7
+          ],
+          "weeks": [
+            1,
+            3
+          ],
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "C8367288-39C0-5317-84F8-4A1A8D3B55F4",
+          "type": "resource",
+          "weekdays": [
+            4
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        }
+      ],
+      "exceptions": [],
+      "source": "https://www.city.shinjuku.lg.jp/",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "13105-bunkyo",
+      "prefecture": "東京都",
+      "city": "文京区",
+      "cityKana": "ぶんきょうく",
+      "area": null,
+      "rules": [
+        {
+          "id": "19A567B8-825A-520A-9C3C-8E49F4262E2F",
+          "type": "burnable",
+          "weekdays": [
+            2,
+            5
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "26A0E06F-8FD0-5531-88C1-3A763682F58E",
+          "type": "nonBurnable",
+          "weekdays": [
+            4
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "2CE0B1F0-70FE-5442-95EF-A79F1D99F60C",
+          "type": "resource",
+          "weekdays": [
+            7
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        }
+      ],
+      "exceptions": [],
+      "source": "https://www.city.bunkyo.lg.jp/",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "13106-taito",
+      "prefecture": "東京都",
+      "city": "台東区",
+      "cityKana": "たいとうく",
+      "area": null,
+      "rules": [
+        {
+          "id": "738D4D0A-7B5B-5A19-9F42-6E82FE1DFDDE",
+          "type": "burnable",
+          "weekdays": [
+            2,
+            5
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "C0680B0B-DA61-59D6-A74B-394FE73A80CF",
+          "type": "nonBurnable",
+          "weekdays": [
+            7
+          ],
+          "weeks": [
+            2,
+            4
+          ],
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "66C72C1C-B58B-5300-922B-46873FCFF78C",
+          "type": "resource",
+          "weekdays": [
+            4
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        }
+      ],
+      "exceptions": [],
+      "source": "https://www.city.taito.lg.jp/",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "13107-sumida",
+      "prefecture": "東京都",
+      "city": "墨田区",
+      "cityKana": "すみだく",
+      "area": null,
+      "rules": [
+        {
+          "id": "4AFAE898-CCB1-5499-A8F0-B951DC2C3749",
+          "type": "burnable",
+          "weekdays": [
+            2,
+            5
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "AC80D52D-2E71-5379-8C67-7C271C60A2A0",
+          "type": "nonBurnable",
+          "weekdays": [
+            4
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "924952B1-5DAE-59C7-8C70-7C32E125B132",
+          "type": "resource",
+          "weekdays": [
+            7
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        }
+      ],
+      "exceptions": [],
+      "source": "https://www.city.sumida.lg.jp/",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "13108-koto",
+      "prefecture": "東京都",
+      "city": "江東区",
+      "cityKana": "こうとうく",
+      "area": null,
+      "rules": [
+        {
+          "id": "7155596E-A715-52B5-8F29-41A041BD7323",
+          "type": "burnable",
+          "weekdays": [
+            2,
+            5
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "8E832FB7-9615-5C8B-9727-1386E289937A",
+          "type": "nonBurnable",
+          "weekdays": [
+            7
+          ],
+          "weeks": [
+            1,
+            3
+          ],
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "FF2073EC-63A1-528E-BA62-A2015D77CE94",
+          "type": "resource",
+          "weekdays": [
+            4
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        }
+      ],
+      "exceptions": [],
+      "source": "https://www.city.koto.lg.jp/",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "13109-shinagawa",
+      "prefecture": "東京都",
+      "city": "品川区",
+      "cityKana": "しながわく",
+      "area": null,
+      "rules": [
+        {
+          "id": "413F8EF2-16AF-5F70-97F7-F2324C74C0A9",
+          "type": "burnable",
+          "weekdays": [
+            2,
+            5
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "9D17D837-C50A-5F14-9E09-B0F997FA2A53",
+          "type": "nonBurnable",
+          "weekdays": [
+            4
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "5A268642-1278-5FB3-8BF0-82D6E8325E00",
+          "type": "resource",
+          "weekdays": [
+            3
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        }
+      ],
+      "exceptions": [],
+      "source": "https://www.city.shinagawa.tokyo.jp/",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "13110-meguro",
+      "prefecture": "東京都",
+      "city": "目黒区",
+      "cityKana": "めぐろく",
+      "area": null,
+      "rules": [
+        {
+          "id": "ACA13B80-8E8A-553A-B5E0-D6CFE885C649",
+          "type": "burnable",
+          "weekdays": [
+            2,
+            5
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "FD5ECB18-CA32-5961-B9DC-8439BC9E8E77",
+          "type": "nonBurnable",
+          "weekdays": [
+            7
+          ],
+          "weeks": [
+            2,
+            4
+          ],
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "630FB6BC-8AAD-5788-8392-40DAE03C13DB",
+          "type": "resource",
+          "weekdays": [
+            4
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        }
+      ],
+      "exceptions": [],
+      "source": "https://www.city.meguro.tokyo.jp/",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "13111-ota",
+      "prefecture": "東京都",
+      "city": "大田区",
+      "cityKana": "おおたく",
+      "area": null,
+      "rules": [
+        {
+          "id": "72314007-E960-5B0C-A0E5-51D1FFBE2646",
+          "type": "burnable",
+          "weekdays": [
+            2,
+            5
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "900CDFA5-9DFE-58CC-B109-374060982BA6",
+          "type": "nonBurnable",
+          "weekdays": [
+            4
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "6584EA7D-54EF-51F7-9A7E-EFF6F466CE64",
+          "type": "resource",
+          "weekdays": [
+            7
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        }
+      ],
+      "exceptions": [],
+      "source": "https://www.city.ota.tokyo.jp/",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "13112-setagaya",
+      "prefecture": "東京都",
+      "city": "世田谷区",
+      "cityKana": "せたがやく",
+      "area": null,
+      "rules": [
+        {
+          "id": "18EF5A0F-815E-5E4F-ABC8-EC3B926865B9",
+          "type": "burnable",
+          "weekdays": [
+            2,
+            5
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "1F3A8D8B-836D-5ABB-97CD-68B2B48868DD",
+          "type": "nonBurnable",
+          "weekdays": [
+            4
+          ],
+          "weeks": [
+            1,
+            3
+          ],
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "B6EB3415-2714-5870-9978-8C78BA57F0AA",
+          "type": "resource",
+          "weekdays": [
+            4
+          ],
+          "weeks": [
+            2,
+            4
+          ],
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "4AF19988-F11E-538C-A544-8EA217CC1F53",
+          "type": "plastic",
+          "weekdays": [
+            3
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        }
+      ],
+      "exceptions": [],
+      "source": "https://www.city.setagaya.lg.jp/",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "13113-shibuya",
+      "prefecture": "東京都",
+      "city": "渋谷区",
+      "cityKana": "しぶやく",
+      "area": null,
+      "rules": [
+        {
+          "id": "7BF9ED01-88F7-5CF8-B5DE-B031627B399C",
+          "type": "burnable",
+          "weekdays": [
+            2,
+            5
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "A8B993D7-83A3-5843-8288-F0D2FD691ED9",
+          "type": "nonBurnable",
+          "weekdays": [
+            7
+          ],
+          "weeks": [
+            1,
+            3
+          ],
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "4373DF12-E2E7-58B4-AAA4-37AA578C0C4B",
+          "type": "resource",
+          "weekdays": [
+            3
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        }
+      ],
+      "exceptions": [],
+      "source": "https://www.city.shibuya.tokyo.jp/",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "13114-nakano",
+      "prefecture": "東京都",
+      "city": "中野区",
+      "cityKana": "なかのく",
+      "area": null,
+      "rules": [
+        {
+          "id": "B218F520-A95A-5EFE-8C90-D250FEC10C41",
+          "type": "burnable",
+          "weekdays": [
+            2,
+            5
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "D806450D-C229-5274-8DDB-F0E6A024CDD9",
+          "type": "nonBurnable",
+          "weekdays": [
+            4
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "2324C967-3AE1-5A03-92E5-D15B6BB265F1",
+          "type": "resource",
+          "weekdays": [
+            7
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        }
+      ],
+      "exceptions": [],
+      "source": "https://www.city.tokyo-nakano.lg.jp/",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "13115-suginami",
+      "prefecture": "東京都",
+      "city": "杉並区",
+      "cityKana": "すぎなみく",
+      "area": null,
+      "rules": [
+        {
+          "id": "ADE8E07A-D4E7-5469-B8BB-730B08642CEC",
+          "type": "burnable",
+          "weekdays": [
+            2,
+            5
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "54EC509A-75A7-5AF0-8402-08F92494BC0F",
+          "type": "nonBurnable",
+          "weekdays": [
+            7
+          ],
+          "weeks": [
+            2,
+            4
+          ],
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "2CBC65CF-129B-59A1-955E-FB056D3488F4",
+          "type": "resource",
+          "weekdays": [
+            4
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        }
+      ],
+      "exceptions": [],
+      "source": "https://www.city.suginami.tokyo.jp/",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "13116-toshima",
+      "prefecture": "東京都",
+      "city": "豊島区",
+      "cityKana": "としまく",
+      "area": null,
+      "rules": [
+        {
+          "id": "3CB5EF6F-44C2-5055-9A62-310D3DC60C76",
+          "type": "burnable",
+          "weekdays": [
+            2,
+            5
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "922839CF-FD3E-5EBA-83A9-B87B3038BC61",
+          "type": "nonBurnable",
+          "weekdays": [
+            4
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "175AA4DF-D6AB-5E61-8E0B-0A1FC100F6DE",
+          "type": "resource",
+          "weekdays": [
+            3
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        }
+      ],
+      "exceptions": [],
+      "source": "https://www.city.toshima.lg.jp/",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "13117-kita",
+      "prefecture": "東京都",
+      "city": "北区",
+      "cityKana": "きたく",
+      "area": null,
+      "rules": [
+        {
+          "id": "859B2819-7AFE-5BB1-A30F-8C6196B0F4D5",
+          "type": "burnable",
+          "weekdays": [
+            2,
+            5
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "AD37820D-73FF-57A1-9A69-9377DB76D9A6",
+          "type": "nonBurnable",
+          "weekdays": [
+            7
+          ],
+          "weeks": [
+            1,
+            3
+          ],
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "DFF28C01-1EF6-5C0F-B377-64C3A45D125E",
+          "type": "resource",
+          "weekdays": [
+            4
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        }
+      ],
+      "exceptions": [],
+      "source": "https://www.city.kita.tokyo.jp/",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "13118-arakawa",
+      "prefecture": "東京都",
+      "city": "荒川区",
+      "cityKana": "あらかわく",
+      "area": null,
+      "rules": [
+        {
+          "id": "3ED3B7D6-1374-511A-A60E-664F7E92BA3B",
+          "type": "burnable",
+          "weekdays": [
+            2,
+            5
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "5CE505FC-5714-5C70-8234-F0B201BB30D1",
+          "type": "nonBurnable",
+          "weekdays": [
+            4
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "9EFDA158-698D-5E12-A065-4DB02EC945FC",
+          "type": "resource",
+          "weekdays": [
+            7
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        }
+      ],
+      "exceptions": [],
+      "source": "https://www.city.arakawa.tokyo.jp/",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "13119-itabashi",
+      "prefecture": "東京都",
+      "city": "板橋区",
+      "cityKana": "いたばしく",
+      "area": null,
+      "rules": [
+        {
+          "id": "67F383EF-C848-59D1-99E5-59E1874558DB",
+          "type": "burnable",
+          "weekdays": [
+            2,
+            5
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "2A80C930-6D3A-549D-AAAA-ADC1216A36C6",
+          "type": "nonBurnable",
+          "weekdays": [
+            7
+          ],
+          "weeks": [
+            2,
+            4
+          ],
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "9317188B-B279-555A-8591-4EB6984513EC",
+          "type": "resource",
+          "weekdays": [
+            4
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        }
+      ],
+      "exceptions": [],
+      "source": "https://www.city.itabashi.tokyo.jp/",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "13120-nerima",
+      "prefecture": "東京都",
+      "city": "練馬区",
+      "cityKana": "ねりまく",
+      "area": null,
+      "rules": [
+        {
+          "id": "6D79BA03-0625-51A1-BF5C-BAD2027E49FD",
+          "type": "burnable",
+          "weekdays": [
+            2,
+            5
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "941B5CA3-7376-5D7A-87FD-A8175CF76AC2",
+          "type": "nonBurnable",
+          "weekdays": [
+            4
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "7DF96826-6C1C-5634-8BB1-383DC52972F7",
+          "type": "resource",
+          "weekdays": [
+            3
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        }
+      ],
+      "exceptions": [],
+      "source": "https://www.city.nerima.tokyo.jp/",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "13121-adachi",
+      "prefecture": "東京都",
+      "city": "足立区",
+      "cityKana": "あだちく",
+      "area": null,
+      "rules": [
+        {
+          "id": "E6BCE61E-B997-5094-AFDB-563207B67524",
+          "type": "burnable",
+          "weekdays": [
+            2,
+            5
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "B66E119B-B455-58F5-B7C4-5B074E126931",
+          "type": "nonBurnable",
+          "weekdays": [
+            7
+          ],
+          "weeks": [
+            1,
+            3
+          ],
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "89A9E948-AD51-56A5-8EE0-E3F367FB65B7",
+          "type": "resource",
+          "weekdays": [
+            4
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        }
+      ],
+      "exceptions": [],
+      "source": "https://www.city.adachi.tokyo.jp/",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "13122-katsushika",
+      "prefecture": "東京都",
+      "city": "葛飾区",
+      "cityKana": "かつしかく",
+      "area": null,
+      "rules": [
+        {
+          "id": "459BEB6A-6631-5774-8B35-A3F627FBFBF0",
+          "type": "burnable",
+          "weekdays": [
+            2,
+            5
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "457BA9C4-E8EB-5919-9E93-A2C90C7AB440",
+          "type": "nonBurnable",
+          "weekdays": [
+            4
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "9F1C6FFA-6AB3-504A-B2F7-6F606EC1A054",
+          "type": "resource",
+          "weekdays": [
+            7
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        }
+      ],
+      "exceptions": [],
+      "source": "https://www.city.katsushika.lg.jp/",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "13123-edogawa",
+      "prefecture": "東京都",
+      "city": "江戸川区",
+      "cityKana": "えどがわく",
+      "area": null,
+      "rules": [
+        {
+          "id": "473C0A7C-2440-5FF4-B6A3-22B832AA7493",
+          "type": "burnable",
+          "weekdays": [
+            2,
+            5
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "3F7E60BF-67D0-5743-A4D9-B853D6D8C291",
+          "type": "nonBurnable",
+          "weekdays": [
+            7
+          ],
+          "weeks": [
+            2,
+            4
+          ],
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "3C10DFCC-21C2-5EA2-A1A1-8991F9137F3E",
+          "type": "resource",
+          "weekdays": [
+            4
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        }
+      ],
+      "exceptions": [],
+      "source": "https://www.city.edogawa.tokyo.jp/",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "24201-tsu",
+      "prefecture": "三重県",
+      "city": "津市",
+      "cityKana": "つし",
+      "area": null,
+      "rules": [
+        {
+          "id": "137E1BC9-9CC1-5F57-98AF-3487DC7F7B64",
+          "type": "burnable",
+          "weekdays": [
+            2,
+            5
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "0C117BB7-45ED-56BC-B794-B8A0A30FAFDB",
+          "type": "nonBurnable",
+          "weekdays": [
+            4
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "6CCF30CC-DFFF-5F27-B1F4-3562723CCA67",
+          "type": "resource",
+          "weekdays": [
+            3
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        }
+      ],
+      "exceptions": [],
+      "source": "https://www.city.tsu.lg.jp/",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "25201-otsu",
+      "prefecture": "滋賀県",
+      "city": "大津市",
+      "cityKana": "おおつし",
+      "area": null,
+      "rules": [
+        {
+          "id": "522EE6CC-4EEC-51A2-9473-39919BADB11C",
+          "type": "burnable",
+          "weekdays": [
+            2,
+            5
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "24D9669A-7109-56D9-B936-CA0DABD24A3A",
+          "type": "nonBurnable",
+          "weekdays": [
+            7
+          ],
+          "weeks": [
+            1,
+            3
+          ],
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "FFAC5B93-39A5-5DA2-BADE-DB1492575848",
+          "type": "resource",
+          "weekdays": [
+            4
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        }
+      ],
+      "exceptions": [],
+      "source": "https://www.city.otsu.lg.jp/",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "26100-kyoto",
+      "prefecture": "京都府",
+      "city": "京都市",
+      "cityKana": "きょうとし",
+      "area": null,
+      "rules": [
+        {
+          "id": "944F43FF-7B8C-5C54-ACC2-44A7383AABCD",
+          "type": "burnable",
+          "weekdays": [
+            2,
+            5
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "FE9F884F-86F7-5027-B9A9-C0EE042B1D25",
+          "type": "resource",
+          "weekdays": [
+            4
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "07FECDEF-BF7B-541C-9885-6687808DEF55",
+          "type": "plastic",
+          "weekdays": [
+            3
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        }
+      ],
+      "exceptions": [],
+      "source": "https://www.city.kyoto.lg.jp/",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "27100-osaka",
+      "prefecture": "大阪府",
+      "city": "大阪市",
+      "cityKana": "おおさかし",
+      "area": null,
+      "rules": [
+        {
+          "id": "BFD01A0E-C6E1-5F35-A525-559270733FC0",
+          "type": "burnable",
+          "weekdays": [
+            2,
+            5
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "21BE9BF3-B7FC-5AA7-9F18-8025107CB32D",
+          "type": "resource",
+          "weekdays": [
+            3
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "73CFC63E-F197-52D3-89B6-EF5BFE44AAF4",
+          "type": "plastic",
+          "weekdays": [
+            4
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        }
+      ],
+      "exceptions": [],
+      "source": "https://www.city.osaka.lg.jp/",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "28100-kobe",
+      "prefecture": "兵庫県",
+      "city": "神戸市",
+      "cityKana": "こうべし",
+      "area": null,
+      "rules": [
+        {
+          "id": "2EC4BB87-434D-537A-B4EA-97A5699418DE",
+          "type": "burnable",
+          "weekdays": [
+            2,
+            5
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "10A20190-FFA9-5855-B49E-6B4EC0C71E66",
+          "type": "nonBurnable",
+          "weekdays": [
+            4
+          ],
+          "weeks": [
+            1,
+            3
+          ],
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "FD370F89-BC48-5D3F-9949-A6E44F4AF9A1",
+          "type": "resource",
+          "weekdays": [
+            3
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        }
+      ],
+      "exceptions": [],
+      "source": "https://www.city.kobe.lg.jp/",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "29201-nara",
+      "prefecture": "奈良県",
+      "city": "奈良市",
+      "cityKana": "ならし",
+      "area": null,
+      "rules": [
+        {
+          "id": "CDCE3ED5-74DD-5A8D-AB7B-3FE002BAEA0D",
+          "type": "burnable",
+          "weekdays": [
+            2,
+            5
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "36234E79-CD67-53C6-BE96-EF7FA6CA4EDE",
+          "type": "nonBurnable",
+          "weekdays": [
+            7
+          ],
+          "weeks": [
+            2,
+            4
+          ],
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "11702DAA-D13E-538F-BA9F-A30246BCF80C",
+          "type": "resource",
+          "weekdays": [
+            4
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        }
+      ],
+      "exceptions": [],
+      "source": "https://www.city.nara.lg.jp/",
+      "updated": "2026-11-23"
+    },
+    {
+      "id": "30201-wakayama",
+      "prefecture": "和歌山県",
+      "city": "和歌山市",
+      "cityKana": "わかやまし",
+      "area": null,
+      "rules": [
+        {
+          "id": "437EFB76-73A4-5E54-B6A3-15DF18562C3A",
+          "type": "burnable",
+          "weekdays": [
+            2,
+            5
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "40FBFA53-21A9-5F8F-B0CF-EF3A2120FF74",
+          "type": "nonBurnable",
+          "weekdays": [
+            4
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        },
+        {
+          "id": "9C16AF26-556C-5502-A58B-7718A9E68C59",
+          "type": "resource",
+          "weekdays": [
+            3
+          ],
+          "weeks": null,
+          "biweeklyStartDate": null
+        }
+      ],
+      "exceptions": [],
+      "source": "https://www.city.wakayama.wakayama.jp/",
+      "updated": "2026-11-23"
+    }
+  ]
+}
